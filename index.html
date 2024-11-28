@@ -158,9 +158,58 @@ p.ex1 {
         </tr>
         </table>
         Formatting some equations using MathML x^2+4x+4=0
+        <div id="last-updated">Loading last update time...</div>
 
-         <h3 id="References">References</h3>
-      <p>
+        <!-- Verify Button -->
+        <button onclick="verifyLastupdatedTime()" style="display: block; margin: 10px auto; padding 8px 16px;">
+          Verify ;ast Modified Time
+        </button>
+
+        <script>
+            async function getLast updatedTime() {
+                const username = 'nr005' ;        
+                const repo ='FY025';
+
+             const url = 'https://api.github.com/repos/${username}/${repo}/commits';
+
+             try {
+                 const response = await fetch(url, {
+                     method: 'GET',
+                     headers: {
+                         'Accept': 'application/vnd.github.v3+json',
+                     }
+                 });
+                 if (!response.ok) {
+                      throw new Error('Error fetching data: ${response.status} - $response.statusText}');      
+                 }          
+                 const commits = await response.json();
+                 if (commits && commits.length > 0) {
+                     const lastCommitDate = new Date(commits[0].commit.comitter.date);
+
+                     // Displaying the time on load
+                     document.getElementById('last-updated').innerText = 'Last Modified Time: ${last CommitDate.toLocaleString()]';
+                 } else        
+             
+             
+             
+             
+             
+             
+             <h3 id="References">References</h3>
+     
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              <p>
       <pre>
         Angluin, D (1988), Queries and concept learning. Machine learning 2, (4), 319-342.
         Brinker, K (2003), Incorporating Diversity in Active Learning with Support Vector Machines,
