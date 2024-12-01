@@ -162,55 +162,6 @@ p.ex1 {
 
 
 
-<p id="totalWordCount"></p>
-<hr>
-
-<!-- Example content sections -->
-<div id="Introduction_InText">Your introduction text here...</div>
-<div id="Analysis_InText">Your analysis text here...</div>
-
-<script>
-  // Function to calculate and display word count for a specified section
-  function displayWordCount(sectionId) {
-    const section = document.getElementById(sectionId);
-    
-    if (!section) {
-      console.error(`Element with ID ${sectionId} not found.`);
-      return 0;
-    }
-
-    const text = section.textContent || section.innerText; // Ensures compatibility
-    const wordArray = text.trim().split(/\s+/);  // Split by any whitespace
-    return wordArray.length; // Return the word count
-  }
-
-  // Function to calculate and display total word count from selected sections
-  function displayTotalWordCount() {
-    const IntroductionCount = displayWordCount("Introduction_InText");
-    const AnalysisCount = displayWordCount("Analysis_InText");
-
-    // Sum the word counts
-    const totalWordCount = IntroductionCount + AnalysisCount;
-
-    // Display the total word count
-    document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
-  }
-
-  // Ensure the function runs when the page has loaded
-  window.onload = function() {
-    displayTotalWordCount();
-  };
-</script>
-
-
-
-
-
-        
-
-
-
-
         <!-- Last commit time display -->
 <div id="last-updated">Loading last update time...</div>
 <!-- Verify Button -->
