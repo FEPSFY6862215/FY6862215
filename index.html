@@ -158,8 +158,92 @@ p.ex1 {
         </tr>
         </table>
         Formatting some equations using MathML x^2+4x+4=0
+<p id="totalWordCount"></p>
+<hr>
 
+<!-- Your content sections -->
+<div id="Introduction_InText">
+  Your introduction text here. It should have some content to be counted.
+</div>
 
+<div id="Analysis_InText">
+  Your analysis text here. It should also have content.
+</div>
+
+<script>
+// Function to calculate word count for a specified section
+function displayWordCount(sectionId) {
+  const section = document.getElementById(sectionId);
+  
+  if (!section) {
+    console.error(`Element with ID ${sectionId} not found.`);
+    return 0;
+  }
+
+  // Get the visible text content of the section
+  const text = section.textContent || section.innerText;
+
+  // Debugging: Log the raw text to see if it's being captured correctly
+  console.log(`Text from ${sectionId}: `, text);
+
+  // Split the text by spaces and filter out empty strings (extra spaces)
+  const wordArray = text.trim().split(/\s+/);
+  
+  // Return the number of words
+  return wordArray.length;
+}
+
+// Function to calculate and display the total word count
+function displayTotalWordCount() {
+  // Get the word count for both sections
+  const IntroductionCount = displayWordCount("Introduction_InText");
+  const AnalysisCount = displayWordCount("Analysis_InText");
+
+  // Calculate the total word count
+  const totalWordCount = IntroductionCount + AnalysisCount;
+
+  // Display the total word count
+  document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
+
+  // Debugging: Log the word counts to check
+  console.log(`Introduction word count: ${IntroductionCount}`);
+  console.log(`Analysis word count: ${AnalysisCount}`);
+  console.log(`Total word count: ${totalWordCount}`);
+}
+
+// Ensure the function runs when the page is loaded
+window.onload = function() {
+  displayTotalWordCount();
+};
+</script>
+
+ <p id="totalWordCount"></p>
+<hr>
+<script>
+  // Function to calculate and display word count for a specified section
+  function displayWordCount(sectionId, outputId) {
+    // Get the text content from the specified section
+    const text = document.getElementById(sectionId).textContent;
+    // Split text into words based on spaces and filter out any empty strings
+    const wordArray = text.trim().split(/\s+/);
+    // Count the words
+    const wordCount = wordArray.length;
+    // Return the word count for summing purposes
+    return wordCount;
+  }
+  // Function to calculate and display total word count from selected sections
+  function displayTotalWordCount() {
+    // Calculate word count for each section and accumulate the total
+    const IntroductionCount = displayWordCount("Introduction_InText");
+    const AnalysisCount = displayWordCount("Analysis_InText");
+    // Calculate the sum of all selected sections
+    const totalWordCount = IntroductionCount + AnalysisCount;
+    // Display the total word count
+    document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
+  }
+  // Run the function for specific sections and display total count when the page loads
+  window.onload = displayTotalWordCount;
+</script>
 
 
         <!-- Last commit time display -->
