@@ -202,6 +202,7 @@ p.ex1 {
     }
     // Initial load to display the time on page load
     window.onload = getLastUpdatedTime;
+<!-- References Section -->
 <h3 id="References">References</h3>
 <p>
     <pre>
@@ -218,7 +219,7 @@ p.ex1 {
 </p>
 
 <!-- Placeholder for total word count -->
-<p id="totalWordCount"></p>
+<p id="totalWordCount">Total word count: Calculating...</p>
 <hr>
 
 <!-- Last commit time display -->
@@ -231,16 +232,20 @@ p.ex1 {
 <script>
     // Function to calculate and display word count for a specified section
     function displayWordCount(sectionId) {
-        const text = document.getElementById(sectionId).textContent;
-        const wordArray = text.trim().split(/\s+/);
-        return wordArray.length;
+        const section = document.getElementById(sectionId);
+        if (section) {
+            const text = section.textContent.trim();
+            const wordArray = text.split(/\s+/);
+            return wordArray.length;
+        }
+        return 0; // Return 0 if the section is not found
     }
 
     // Function to calculate and display total word count from selected sections
     function displayTotalWordCount() {
-        const IntroductionCount = displayWordCount("Introduction");
-        const AnalysisCount = displayWordCount("Analysis and discussion");
-        const totalWordCount = IntroductionCount + AnalysisCount;
+        const introductionCount = displayWordCount("Introduction");
+        const analysisCount = displayWordCount("Analysis and discussion");
+        const totalWordCount = introductionCount + analysisCount;
         document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
     }
 
@@ -289,7 +294,3 @@ p.ex1 {
 
 </body>
 </html>
-
-
-
- 
