@@ -169,7 +169,7 @@ p.ex1 {
         const username = 'nr0025';
         const repo = 'FY0025';
        
-        const url = https://api.github.com/repos/${username}/${repo}/commits;
+        const url = `https://api.github.com/repos/${username}/${repo}/commits`;
         try {
             const response = await fetch(url, {
                 method: 'GET',
@@ -178,14 +178,14 @@ p.ex1 {
                 }
             });
             if (!response.ok) {
-                throw new Error(Error fetching data: ${response.status} - ${response.statusText});
+                throw new Error(`Error fetching data: ${response.status} - ${response.statusText}`);
             }
             const commits = await response.json();
             if (commits && commits.length > 0) {
                 const lastCommitDate = new Date(commits[0].commit.committer.date);
                
                 // Displaying the time on load
-                document.getElementById('last-updated').innerText = Last Modified Time: ${lastCommitDate.toLocaleString()};
+                document.getElementById('last-updated').innerText = `Last Modified Time: ${lastCommitDate.toLocaleString()}`;
             } else {
                 document.getElementById('last-updated').innerText = 'No commits found in the repository.';
             }
@@ -245,3 +245,6 @@ p.ex1 {
          document.getElementByld("date&time").innerHTML =d;
      
         </script>
+      
+       
+  
