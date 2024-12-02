@@ -202,57 +202,93 @@ p.ex1 {
     }
     // Initial load to display the time on page load
     window.onload = getLastUpdatedTime;
-</script>
-             <h3 id="References">References</h3>
-     
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              <p>
-      <pre>
+<h3 id="References">References</h3>
+<p>
+    <pre>
         Angluin, D (1988), Queries and concept learning. Machine learning 2, (4), 319-342.
         Brinker, K (2003), Incorporating Diversity in Active Learning with Support Vector Machines,
         Proceedings of the Twentieth International Conference on Machine Learning (ICML-2003).
-
-        Bruzzone, L and Chi, M and Marconcini, M(2006), A novel transductive SVM for semisupervised classication of remote-sensing images,
+        Bruzzone, L and Chi, M and Marconcini, M(2006), A novel transductive SVM for semisupervised classification of remote-sensing images,
         IEEE Transactions on Geoscience and Remote Sensing, 44, (11), 3363.
-
         Bruzzone, L and Persello, C (2009), Active learning for classification of remote-sensing images.
         In: Geoscience and Remote Sensing Symposium, 2009 IEEE International, IGARSS 2009, 3.
-
         Campbell, C, Criostianini, N and Smola, A (2000), Query learning with large margin classifiers.
-        In:Proc. 17th Internat. Conf.on Machine Learning. Morgan Kaufman, Stanford, CA,111-118.
-      </pre>
-         
-         </p>
+        In: Proc. 17th Internat. Conf. on Machine Learning. Morgan Kaufman, Stanford, CA,111-118.
+    </pre>
+</p>
 
-        <p id="date&time"></p>
+<!-- Placeholder for total word count -->
+<p id="totalWordCount"></p>
+<hr>
 
-        <script>
+<!-- Last commit time display -->
+<div id="last-updated">Loading last update time...</div>
+<!-- Verify Button -->
+<button onclick="verifyLastUpdatedTime()" style="display: block; margin: 10px auto; padding: 8px 16px;">
+    Verify Last Modified Time
+</button>
 
-         //Javascript to display the date and time on my webpage
+<script>
+    // Function to calculate and display word count for a specified section
+    function displayWordCount(sectionId) {
+        const text = document.getElementById(sectionId).textContent;
+        const wordArray = text.trim().split(/\s+/);
+        return wordArray.length;
+    }
 
-         const d = new Date();
-         document.getElementByld("date&time").innerHTML =d;
-     
-        </script>
-      
-       
-  
+    // Function to calculate and display total word count from selected sections
+    function displayTotalWordCount() {
+        const IntroductionCount = displayWordCount("Introduction");
+        const AnalysisCount = displayWordCount("Analysis and discussion");
+        const totalWordCount = IntroductionCount + AnalysisCount;
+        document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
+    }
 
+    // Function to get the last updated time from GitHub API
+    async function getLastUpdatedTime() {
+        const username = 'nr0025';
+        const repo = 'FY0025';
+        const url = `https://api.github.com/repos/${username}/${repo}/commits`;
 
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/vnd.github.v3+json',
+                }
+            });
+            if (!response.ok) {
+                throw new Error(`Error fetching data: ${response.status} - ${response.statusText}`);
+            }
+            const commits = await response.json();
+            if (commits && commits.length > 0) {
+                const lastCommitDate = new Date(commits[0].commit.committer.date);
+                document.getElementById('last-updated').innerText = `Last Modified Time: ${lastCommitDate.toLocaleString()}`;
+            } else {
+                document.getElementById('last-updated').innerText = 'No commits found in the repository.';
+            }
+        } catch (error) {
+            console.error('Error fetching the last updated time:', error);
+            document.getElementById('last-updated').innerText = 'Error fetching update time. Please check the repository details.';
+        }
+    }
 
+    // Function to verify the last update time by re-fetching it from the API
+    async function verifyLastUpdatedTime() {
+        document.getElementById('last-updated').innerText = 'Verifying...';
+        await getLastUpdatedTime();
+        alert("Last modified time has been successfully verified from GitHub API.");
+    }
 
+    // Run the function for specific sections and display total count when the page loads
+    window.onload = function() {
+        getLastUpdatedTime();  // Keep the last updated time functionality
+        displayTotalWordCount();  // Add the word count calculation
+    };
+</script>
 
+</body>
+</html>
 
 
 
