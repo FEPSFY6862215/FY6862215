@@ -83,7 +83,11 @@ p.ex1 {
      <tr>
       <td><a href="#Job Security">Job Security</td>
     </tr>
-  <tr>
+   <tr>
+       <td><a href="#Reforms">Reforms</td>
+    </tr>
+     
+     <tr>
       <td><a href="#References">References</td>
     </tr>
 
@@ -274,9 +278,10 @@ p.ex1 {
     // Calculate word count for each section and accumulate the total
     const IntroductionCount = displayWordCount("Introduction_InText");
     const AnalysisCount = displayWordCount("Analysis_InText");
+    const JobInstability = displayWordCount("JobInstability_InText");
     const JobSecurityCount = displayWordCount("JobSecurity_InText");
    // Calculate the sum of all selected sections
-    const totalWordCount = IntroductionCount + AnalysisCount + JobSecurityCount;
+    const totalWordCount = IntroductionCount + AnalysisCount + JobSecurityCount + JobInstabilityCount;
     // Display the total word count
     document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
   }
