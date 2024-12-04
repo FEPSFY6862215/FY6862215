@@ -284,12 +284,11 @@ p.ex1 {
   function displayTotalWordCount() {
     // Calculate word count for each section and accumulate the total
     const IntroductionCount = displayWordCount("Introduction_InText");
-    const AnalysisCount = displayWordCount("Analysis_InText");
     const JobInstabilityCount = displayWordCount("JobInstability_InText");
     const JobSecurityCount = displayWordCount("JobSecurity_InText");
     const ReformsCount = displayWordCount("Reforms_InText");   
    // Calculate the sum of all selected sections
-    const totalWordCount = IntroductionCount + AnalysisCount + JobInstabilityCount + JobSecurityCount + ReformsCount;
+    const totalWordCount = IntroductionCount + JobInstabilityCount + JobSecurityCount + ReformsCount;
     // Display the total word count
     document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
   }
