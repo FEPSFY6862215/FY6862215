@@ -274,8 +274,9 @@ p.ex1 {
     // Calculate word count for each section and accumulate the total
     const IntroductionCount = displayWordCount("Introduction_InText");
     const AnalysisCount = displayWordCount("Analysis_InText");
-    // Calculate the sum of all selected sections
-    const totalWordCount = IntroductionCount + AnalysisCount;
+   const JobSecurityCount = displayWordCount("JobSecurity_InText");
+   // Calculate the sum of all selected sections
+    const totalWordCount = IntroductionCount + AnalysisCount + JobSecurityCount;
     // Display the total word count
     document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
   }
