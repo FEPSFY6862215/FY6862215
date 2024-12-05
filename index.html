@@ -949,9 +949,8 @@ p.ex1 {
 
   </pre>
          <h3 id="Conclusion">Conclusion</h3>
-       <pre id="Conclusion">Conclusion
-        <p id="Conclusion">Conclusion>
-         
+       <pre id="Conclusion_InText">
+       <p id="Conclusions_InText">
          
         </p>
        </pre>
@@ -1025,8 +1024,9 @@ p.ex1 {
     const JobInstabilityCount = displayWordCount("JobInstability_InText");
     const JobSecurityCount = displayWordCount("JobSecurity_InText");
     const ReformsCount = displayWordCount("Reforms_InText");   
+    const ConclusionCount = displayWordCount("Conlclusion_InText");
    // Calculate the sum of all selected sections
-    const totalWordCount = IntroductionCount + JobInstabilityCount + JobSecurityCount + ReformsCount;
+    const totalWordCount = IntroductionCount + JobInstabilityCount + JobSecurityCount + ReformsCount + ConclusionCount;
     // Display the total word count
     document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
   }
